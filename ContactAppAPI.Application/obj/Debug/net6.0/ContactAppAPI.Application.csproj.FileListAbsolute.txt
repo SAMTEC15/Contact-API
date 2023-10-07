@@ -1,0 +1,5 @@
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Application\obj\Debug\net6.0\ContactAppAPI.Application.csproj.AssemblyReference.cache
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Application\obj\Debug\net6.0\ContactAppAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Application\obj\Debug\net6.0\ContactAppAPI.Application.AssemblyInfoInputs.cache
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Application\obj\Debug\net6.0\ContactAppAPI.Application.AssemblyInfo.cs
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Application\obj\Debug\net6.0\ContactAppAPI.Application.csproj.CoreCompileInputs.cache
