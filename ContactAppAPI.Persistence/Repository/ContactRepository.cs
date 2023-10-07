@@ -23,39 +23,52 @@ namespace ContactAppAPI.Persistence.Repository
         {
             _configuration = configuration;
         }
-        public async Task<IActionResult> AddNewUser(ContactUserDto contactUserDto)
+        public async Task<ContactUser> AddNewUserAsync(ContactUser contactUser)
         {
-            var user = await _contactUserDbContext.ContactUsers.FindAsync(contactUserDto.Email);
-            if (user == null)
-            {
-                var data = new ContactUser()
-                {
-                    FirstName = contactUserDto.FirstName,
-                    LastName = contactUserDto.LastName,
-                    Email = contactUserDto.Email,
-                    PhoneNumber = contactUserDto.PhoneNumber,
-                    
-                };
+            await _contactUserDbContext.ContactUsers.AddAsync(contactUser);
+            await _contactUserDbContext.SaveChangesAsync();
 
-                var responds = await _userManager.CreateAsync(data); // method implementation takes only user info and password
-                if (responds.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(data, "User");
-                    return new OkObjectResult("User created successfully");
-                }
-                else
-                {                    
-                    return new BadRequestObjectResult($"User creation failed!");
-                }
-            }
-            else
-            {
-                return new BadRequestObjectResult("User with this email already exists.");
-            }          
-
+            return contactUser;
         }
 
-        public async Task<IActionResult> DeleteAllContact()
+        public async Task<ContactUser> GetSingleContactById(int id)
+        {
+            
+                var check = await _contactUserDbContext.ContactUsers.FindAsync(id);
+                return check;
+                /*if (check == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return check;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"An error occurred");
+            }*/
+            
+        }     
+
+        public async Task<IEnumerable<ContactUser>> GetAllContactsAsync()
+        {
+            return await _contactUserDbContext.ContactUsers.ToListAsync();
+        }
+        public async Task<ContactUser> DeleteSingleContactByIdAsync(int id)
+        {
+            var contact = await _contactUserDbContext.ContactUsers.FindAsync(id);
+            if (contact == null)
+            {
+                return null;
+            }
+            _contactUserDbContext.Remove(contact);
+            await _contactUserDbContext.SaveChangesAsync();
+            return contact;
+        }
+
+        public async Task<IEnumerable<ContactUser>> DeleteAllContact()
         {
             var contacts = await _contactUserDbContext.ContactUsers.ToListAsync();
 
@@ -65,49 +78,18 @@ namespace ContactAppAPI.Persistence.Repository
             }
             await _contactUserDbContext.SaveChangesAsync();
 
-            return new OkObjectResult("All Details from your database has been successfully deleted");
-        }
+            return contacts;
+        }     
 
-        public async Task<IActionResult> DeleteSingleContactByIdAsync(int id)
-        {
-            var contact = await _contactUserDbContext.ContactUsers.FindAsync(id);
-            if (contact == null)
-            {
-                return new BadRequestObjectResult("Not Found");
-            }
-            _contactUserDbContext.Remove(contact);
-            await _contactUserDbContext.SaveChangesAsync();
-            return new OkObjectResult("Successfully deleted");
-        }
-
-        public async Task<IActionResult> GetAllContactAsync()
-        {
-            var contacts = await _contactUserDbContext.ContactUsers.ToListAsync();
-            return new OkObjectResult(contacts);
-        }
-
-        public async Task<IActionResult> GetSingleContactById(int id)
-        {
-            var check = await _contactUserDbContext.ContactUsers.FindAsync(id);
-            if(check == null)
-            {
-                return new BadRequestObjectResult("Not found");
-            }
-            else
-            {
-                return new OkObjectResult(check);
-            }
-        }
-
-        public async Task<IActionResult> UpdateUserAsync(int Id, [FromBody] ContactUserDto contact)
+        public async Task<ContactUser> UpdateUserAsync(int Id, [FromBody] ContactUserDto contact)
         {
             var contactToUpdate = await _contactUserDbContext.ContactUsers.FindAsync(Id);
             if (contactToUpdate == null)
             {
-                return new BadRequestObjectResult("Not found");
+                return null;
             }
            var updated = _contactUserDbContext.ContactUsers.Update(contactToUpdate);
-            return new OkObjectResult("Updated Successfully");
+            return contactToUpdate;
         }
     }
 }

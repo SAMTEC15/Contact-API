@@ -1,4 +1,5 @@
 ﻿using ContactAppAPI.Application.DTO;
+using ContactAppAPI.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace ContactAppAPI.Persistence.Repository
 {
     public interface IContactRepository
     {
-        Task<IActionResult> GetSingleContactById(int id);
-        Task<IActionResult> GetAllContactAsync();
-        Task<IActionResult> DeleteSingleContactByIdAsync(int id);
-        Task<IActionResult> DeleteAllContact();
-        Task<IActionResult> AddNewUser(ContactUserDto appUser);
-        Task<IActionResult> UpdateUserAsync(int Id, [FromBody] ContactUserDto contact);
+        Task<ContactUser> GetSingleContactById(int id);
+        Task<IEnumerable<ContactUser>> GetAllContactsAsync();
+        Task<ContactUser> DeleteSingleContactByIdAsync(int id);
+        Task<IEnumerable<ContactUser>> DeleteAllContact();
+        Task<ContactUser> AddNewUserAsync(ContactUser contactUser);
+        Task<ContactUser> UpdateUserAsync(int Id, [FromBody] ContactUserDto contact);
     }
 }
