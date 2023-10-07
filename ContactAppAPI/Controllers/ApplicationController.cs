@@ -35,11 +35,11 @@ namespace ContactAppAPI.Controllers
             }
             catch (Exception ex)
             {
-                // Handle the exception here, log it, and return an appropriate error response.
-                return StatusCode(500, $"An error occurred while fetching contact by ID: {ex.Message}");
-
+                return new BadRequestObjectResult($"{ex.Message} An error occurred while fetching contact by ID. Please try again later.");
             }
+
         }
+
         [HttpPost("add-new-user")]
         public async Task<IActionResult> AddNewUserAsync([FromBody] ContactUserDto contactUserDto)
         {

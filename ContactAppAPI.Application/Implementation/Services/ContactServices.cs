@@ -41,19 +41,28 @@ namespace ContactAppAPI.Application.Implementation.Services
                 };
             }
 
-             return user;          
+            return user;
 
         }
 
         public async Task<ContactUser> GetContactByIdAsync(int id)
         {
-            return await _contactRepository.GetSingleContactById(id);
+
+            var check = await _contactRepository.GetSingleContactById(id);
+            if (check != null)
+            {
+                return check;
+            }
+            else
+            {
+                return null;
+            }
 
         }
         public async Task<IEnumerable<ContactUser>> GetAllContactsAsync()
         {
             var contacts = await _contactRepository.GetAllContactsAsync();
-                       
+
             return contacts;
         }
 
@@ -62,20 +71,20 @@ namespace ContactAppAPI.Application.Implementation.Services
             // Validate the contact data.
 
             // Get the contact with the specified ID from the repository layer.
-            var contactUser = await _contactRepository.GetSingleContactById(Id);           
+            var contactUser = await _contactRepository.GetSingleContactById(Id);
             if (contactUser == null)
             {
                 return null;
             }
-            
+
             contactUser.FirstName = contact.FirstName;
             contactUser.LastName = contact.LastName;
             contactUser.Email = contact.Email;
             contactUser.PhoneNumber = contact.PhoneNumber;
 
             // Save the updated contact to the repository layer.
-           //var added = await _contactRepository.UpdateUserAsync(contactUser);
-            
+            //var added = await _contactRepository.UpdateUserAsync(contactUser);
+
             return contactUser;
         }
         /*public Task<ContactUser> DeleteSingleContactByIdAsync(int id)

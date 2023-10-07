@@ -33,10 +33,11 @@ namespace ContactAppAPI.Persistence.Repository
 
         public async Task<ContactUser> GetSingleContactById(int id)
         {
-            
+            try
+            {
                 var check = await _contactUserDbContext.ContactUsers.FindAsync(id);
-                return check;
-                /*if (check == null)
+
+                if (check == null)
                 {
                     return null;
                 }
@@ -47,8 +48,8 @@ namespace ContactAppAPI.Persistence.Repository
             }
             catch (Exception ex)
             {
-                throw new Exception($"An error occurred");
-            }*/
+                throw new Exception($"{ex.Message} An error occurred");
+            }
             
         }     
 
