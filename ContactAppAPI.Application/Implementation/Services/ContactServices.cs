@@ -1,51 +1,59 @@
 ﻿using ContactAppAPI.Application.DTO;
+using ContactAppAPI.Application.Implementation.Interface;
 using ContactAppAPI.Domain.Model;
 using ContactAppAPI.Persistence.DataContext;
-using ContactAppAPI.Persistence.Repository;
+using ContactAppAPI.Persistence.Repository.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContactAppAPI.Application.Implementation.Services
 {
-    public class ContactServices
+    public class ContactServices : IContactServices
     {
         private readonly IContactRepository _contactRepository;
         private readonly UserManager<ContactUser> _userManager;
+        private readonly ContactUserDbContext _contactUserDbContext;
+        private readonly ICloudRep _cloudRep;
 
-        public ContactServices(IContactRepository contactRepository)
+        public ContactServices(IContactRepository contactRepository, ContactUserDbContext contactUserDbContext)
         {
             _contactRepository = contactRepository;
+            //_userManager = userManager;
+            _contactUserDbContext = contactUserDbContext;
         }
 
-        public async Task<ContactUser> AddNewUserAsync(ContactUserDto contactUserDto)
+        public async Task<string> AddNewUserAsync(ContactUserDto contactUserDto)
         {
-            // Validate the user input
-            if (string.IsNullOrEmpty(contactUserDto.FirstName) || string.IsNullOrEmpty(contactUserDto.LastName) || string.IsNullOrEmpty(contactUserDto.Email) || (!Regex.IsMatch(contactUserDto.Email, @"^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")))
-            {
+            // Validate the user input           
 
-                return null;
-            }
-
-            var user = await _userManager.FindByEmailAsync(contactUserDto.Email);
+            var user = _contactUserDbContext.ContactUsers.FirstOrDefault(u => u.Email == contactUserDto.Email);
             if (user != null)
             {
-                // Create a new user
-                var contactUser = new ContactUser()
-                {
-                    FirstName = contactUserDto.FirstName,
-                    LastName = contactUserDto.LastName,
-                    Email = contactUserDto.Email,
-                    PhoneNumber = contactUserDto.PhoneNumber,
-                };
-            }
+                return "User already exist";
 
-            return user;
+            }
+            var contactUser = new ContactUserDto()
+            {
+                FirstName = contactUserDto.FirstName,
+                LastName = contactUserDto.LastName,
+                Email = contactUserDto.Email,
+                PhoneNumber = contactUserDto.PhoneNumber,
+                Address = contactUserDto.Address,
+                Company = contactUserDto.Company,
+                DateOfBirth = contactUserDto.DateOfBirth,
+                Gender = contactUserDto.Gender,
+                JobTitle = contactUserDto.JobTitle,
+                Notes = contactUserDto.Notes,
+
+            };
+            await _contactRepository.AddNewUserAsync(contactUser);
+            await _contactUserDbContext.SaveChangesAsync();
+            return "User Added Successfully";
 
         }
 
-        public async Task<ContactUser> GetContactByIdAsync(int id)
+        public async Task<ContactUser> GetContactByIdAsync(string id)
         {
 
             var check = await _contactRepository.GetSingleContactById(id);
@@ -59,18 +67,72 @@ namespace ContactAppAPI.Application.Implementation.Services
             }
 
         }
-        public async Task<IEnumerable<ContactUser>> GetAllContactsAsync()
+
+        public async Task<ContactUser> GetSingleContactByNumber(string number)
         {
-            var contacts = await _contactRepository.GetAllContactsAsync();
+            try
+            {
+                var check = await _contactRepository.GetSingleContactByNumber(number);
+
+                if (check == null)
+                {
+                    return null;
+                }
+                var data = new ContactUser
+                {
+                    Id = check.Id,
+                    FirstName = check.FirstName,
+                    LastName = check.LastName,
+                    Email = check.Email,
+                    PhoneNumber = check.PhoneNumber,
+                    UserName = check.UserName,
+                    ImageUrl = check.ImageUrl,
+                };
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message} An error occurred");
+            }
+        }
+
+        public async Task<ContactUser> GetSingleContactByEmail(string email)
+        {
+            try
+            {
+                var check = await _contactRepository.GetSingleContactByNumber(email);
+
+                if (check == null)
+                {
+                    return null;
+                }
+                var data = new ContactUser
+                {
+                    Id = check.Id,
+                    FirstName = check.FirstName,
+                    LastName = check.LastName,
+                    Email = check.Email,
+                    PhoneNumber = check.PhoneNumber,
+                    UserName = check.UserName,
+                    ImageUrl = check.ImageUrl,
+                };
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message} An error occurred");
+            }
+        }
+        public async Task<IEnumerable<ContactUser>> GetAllContactsAsync(int page, int pageSizes)
+        {
+            var contacts = await _contactRepository.GetAllContactsAsync(page, pageSizes);
 
             return contacts;
         }
 
-        public async Task<ContactUser> UpdateUserAsync(int Id, [FromBody] ContactUserDto contact)
+        public async Task<ContactUser> UpdateUserAsync(string Id, [FromBody] ContactUserDto contact)
         {
-            // Validate the contact data.
 
-            // Get the contact with the specified ID from the repository layer.
             var contactUser = await _contactRepository.GetSingleContactById(Id);
             if (contactUser == null)
             {
@@ -82,60 +144,39 @@ namespace ContactAppAPI.Application.Implementation.Services
             contactUser.Email = contact.Email;
             contactUser.PhoneNumber = contact.PhoneNumber;
 
-            // Save the updated contact to the repository layer.
-            //var added = await _contactRepository.UpdateUserAsync(contactUser);
+            _contactUserDbContext.Add(contactUser);
+            _contactUserDbContext.SaveChanges();
 
             return contactUser;
         }
-        /*public Task<ContactUser> DeleteSingleContactByIdAsync(int id)
+
+        public async Task<string> DeleteSingleContactByIdAsync(string id)
         {
-
-        }
-        public Task<IEnumerable<ContactUser>> DeleteAllContact()
-        {
-
-        }*/
-
-        /*public async Task<ContactUser> CreateContactAsync(ContactUserDto contactUserDto)
-        {
-            // Validate the contact data.
-
-            // Create a new contact object using the validated data.
-            var contact = new ContactUser()
-            {
-                FirstName = contactUserDto.FirstName,
-                LastName = contactUserDto.LastName,
-                Email = contactUserDto.Email,
-                PhoneNumber = contactUserDto.PhoneNumber
-            };
-
-            // Add the new contact to the repository layer.
-            await _contactRepository.CreateContactAsync(contact);
-
-            // Return the new contact to the controller layer.
-            return contact;
-        }
-        public async Task<ContactUser> UpdateContactAsync(int id)
-        {
-            var check = await _contactRepository..GetSingleContactById(id);
+            var check = await _contactRepository.GetSingleContactById(id);
             if (check == null)
             {
-                return NotFoundResult();
+                return "Not Found";
             }
-            else
+            var remove = _contactUserDbContext.Remove(check);
+            _contactUserDbContext.SaveChanges();
+            return "Successfully deleted";
+        }
+
+        public async Task<IEnumerable<ContactUser>> DeleteAllContact()
+        {
+            var check = await _contactRepository.DeleteAllContact();
+            _contactUserDbContext.SaveChanges();
+            return check;
+        }
+
+        public async Task<string> AddImage(ContactUser model)
+        {
+            if (model == null)
             {
-                check.FirstName = contactUserDto.FirstName;
-                check.LastName = contactUserDto.LastName;
-                check.Email = contactUserDto.Email;
-                check.PhoneNumber = contactUserDto.PhoneNumber;
+                return "Invalid Entry";
             }
-            var contact = await _contactRepository.UpdateUserAsync();
-
-
-
-            await _contactRepository.UpdateContactAsync(contact);
-
-            return contact;
-        }*/
+            _cloudRep.Add(model);
+            return "Image Added Successfully";
+        }
     }
 }

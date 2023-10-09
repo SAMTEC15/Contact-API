@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactAppAPI.Application.DTO
+﻿namespace ContactAppAPI.Application.DTO
 {
     public class ContactUserDto
     {
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -18,5 +13,6 @@ namespace ContactAppAPI.Application.DTO
         public string Company { get; set; }
         public string JobTitle { get; set; }
         public string Notes { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
