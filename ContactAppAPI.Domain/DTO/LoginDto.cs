@@ -2,7 +2,7 @@
 
 namespace ContactAppAPI.Application.DTO
 {
-    public class LogicDto
+    public class LoginDto
     {
         [Required]
         [EmailAddress]

@@ -1,0 +1,12 @@
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\bin\Debug\net6.0\ContactAppAPI.Common.deps.json
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\bin\Debug\net6.0\ContactAppAPI.Common.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\bin\Debug\net6.0\ContactAppAPI.Common.pdb
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.csproj.AssemblyReference.cache
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.AssemblyInfoInputs.cache
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.AssemblyInfo.cs
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.csproj.CoreCompileInputs.cache
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\refint\ContactAppAPI.Common.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ContactAppAPI.Common.pdb
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Common\obj\Debug\net6.0\ref\ContactAppAPI.Common.dll

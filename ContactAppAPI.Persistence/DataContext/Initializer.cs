@@ -1,5 +1,6 @@
 ﻿using ContactAppAPI.Domain.Model;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,38 +12,22 @@ namespace ContactAppAPI.Persistence.DataContext
 {
     public class Initializer
     {
-        public static void Seed(IApplicationBuilder applicationBuilder)
+
+        public static void SeedRoles(IServiceProvider serviceProvider)
         {
-            using (var todataScope = applicationBuilder.ApplicationServices.CreateScope())
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            if (!roleManager.RoleExistsAsync("ADMIN").Result)
             {
-                var context = todataScope.ServiceProvider.GetService<ContactUserDbContext>();
-                if (!context.ContactUsers.Any())
-                {
-                    context.ContactUsers.AddRange(new ContactUser()
-                    {
-                        FirstName = "John",
-                        LastName = "Paul",
-                        Email = "John@gmailcom",
-                        PhoneNumber = "1234567890",
-                        PasswordHash = "12345",
-                        NormalizedUserName = "28 Benin",
-                        UserName = "JohnP"
-                    },
-                    new ContactUser()
-                    {
-                        FirstName = "James",
-                        LastName = "Paul",
-                        Email = "John@gmailcom",
-                        PhoneNumber = "1234567890",
-                        PasswordHash = "12345",
-                        NormalizedUserName = "28 Benin",
-                        UserName = "JohnP"
-                    });
-                    //context.Contacts.AddRange(contacts);
-                    context.SaveChanges();
-                }
+                var role = new IdentityRole("ADMIN");
+                roleManager.CreateAsync(role).Wait();
+            }
+            if (!roleManager.RoleExistsAsync("REGULARUSER").Result)
+            {
+                var role = new IdentityRole("REGULARUSER");
+                roleManager.CreateAsync(role).Wait();
             }
         }
+
 
     }
 }

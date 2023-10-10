@@ -81,3 +81,5 @@ C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI\obj\Debug\net6.0\refi
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI\obj\Debug\net6.0\ContactAppAPI.pdb
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI\obj\Debug\net6.0\ContactAppAPI.genruntimeconfig.cache
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI\obj\Debug\net6.0\ref\ContactAppAPI.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI\bin\Debug\net6.0\ContactAppAPI.Common.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI\bin\Debug\net6.0\ContactAppAPI.Common.pdb

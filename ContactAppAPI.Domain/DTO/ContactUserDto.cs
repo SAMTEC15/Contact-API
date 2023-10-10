@@ -1,6 +1,10 @@
-﻿namespace ContactAppAPI.Application.DTO
+﻿using ContactAppAPI.Common.Enums;
+using ContactAppAPI.Domain.Model;
+using Microsoft.AspNetCore.Identity;
+
+namespace ContactAppAPI.Application.DTO
 {
-    public class ContactUserDto
+    public class ContactUserDto : IdentityUser
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -9,10 +13,15 @@
         public string PhoneNumber { get; set; }
         public ContactAddressDto Address { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
         public string Company { get; set; }
         public string JobTitle { get; set; }
         public string Notes { get; set; }
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; }        
+        public UserRole UserType { get; set; }
+        public string HomeAddress { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set;}
+        public UserRole UserRole { get; set; }
     }
 }

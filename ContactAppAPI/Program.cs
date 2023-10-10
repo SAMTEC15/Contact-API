@@ -31,6 +31,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    Initializer.SeedRoles(serviceProvider);
+}
+
 app.UseHttpsRedirection();
 //app.UseStaticFiles();
 app.UseAuthorization();

@@ -15,3 +15,5 @@ C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Persistence\obj\Debug
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Persistence\obj\Debug\net6.0\ContactAppAPI.Persistence.pdb
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Persistence\obj\Debug\net6.0\ContactAppAPI.Persistence.genruntimeconfig.cache
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Persistence\obj\Debug\net6.0\ref\ContactAppAPI.Persistence.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Persistence\bin\Debug\net6.0\ContactAppAPI.Common.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Persistence\bin\Debug\net6.0\ContactAppAPI.Common.pdb

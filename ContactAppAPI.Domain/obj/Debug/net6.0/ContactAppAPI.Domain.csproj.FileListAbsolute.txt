@@ -12,3 +12,6 @@ C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\obj\Debug\net6
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\obj\Debug\net6.0\ContactAppAPI.Domain.pdb
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\obj\Debug\net6.0\ContactAppAPI.Domain.genruntimeconfig.cache
 C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\obj\Debug\net6.0\ref\ContactAppAPI.Domain.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\bin\Debug\net6.0\ContactAppAPI.Common.dll
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\bin\Debug\net6.0\ContactAppAPI.Common.pdb
+C:\Users\user1\source\Personal\ContactAppAPI\ContactAppAPI.Domain\obj\Debug\net6.0\ContactAppAPI.Domain.csproj.CopyComplete

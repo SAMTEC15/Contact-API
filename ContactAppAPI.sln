@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactAppAPI.Persistence",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactAppAPI.Domain", "ContactAppAPI.Domain\ContactAppAPI.Domain.csproj", "{88F7B362-98A7-4066-974F-7902D82B091F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactAppAPI.Common", "ContactAppAPI.Common\ContactAppAPI.Common.csproj", "{9FDB5D46-1E8B-4105-A74C-08FBB80C83B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{88F7B362-98A7-4066-974F-7902D82B091F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F7B362-98A7-4066-974F-7902D82B091F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F7B362-98A7-4066-974F-7902D82B091F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDB5D46-1E8B-4105-A74C-08FBB80C83B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDB5D46-1E8B-4105-A74C-08FBB80C83B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDB5D46-1E8B-4105-A74C-08FBB80C83B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDB5D46-1E8B-4105-A74C-08FBB80C83B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

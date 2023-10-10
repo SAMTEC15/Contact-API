@@ -3360,10 +3360,21 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "ContactAppAPI.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ContactAppAPI.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ContactAppAPI.Common.dll": {}
+        }
+      },
       "ContactAppAPI.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "ContactAppAPI.Common": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.0",
           "Microsoft.AspNetCore.Mvc": "2.2.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
@@ -9302,6 +9313,11 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "ContactAppAPI.Common/1.0.0": {
+      "type": "project",
+      "path": "../ContactAppAPI.Common/ContactAppAPI.Common.csproj",
+      "msbuildProject": "../ContactAppAPI.Common/ContactAppAPI.Common.csproj"
     },
     "ContactAppAPI.Domain/1.0.0": {
       "type": "project",

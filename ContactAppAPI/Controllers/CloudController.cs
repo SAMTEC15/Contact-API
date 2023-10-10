@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactAppAPI.Controllers
 {
+    [ApiController]
     public class CloudController
     {
-        private readonly IFileService _fileService;        
+        /*private readonly IFileService _fileService;        
         private readonly IContactServices _contactServices;
 
         public CloudController(IFileService fs, IContactServices contactServices)
@@ -16,10 +17,10 @@ namespace ContactAppAPI.Controllers
             this._fileService = fs;            
             _contactServices = contactServices;
         }
-       /* [HttpPost]
+        [HttpPost]
         public async Task <IActionResult> Add([FromForm] ContactUser model)
         {
-            *//*var status = new ContactUserDto();
+            var status = new ContactUserDto();
             if (!ModelState.IsValid)
             {               
                 return new BadRequestResult();
@@ -33,7 +34,7 @@ namespace ContactAppAPI.Controllers
                 }
                 
             }
-            return Ok(status);*//*
+            return Ok(status);
 
         }*/
     }
