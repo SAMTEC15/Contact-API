@@ -1,8 +1,6 @@
 ﻿using ContactAppAPI.Application.DTO;
 using ContactAppAPI.Application.Implementation.Interface;
-using ContactAppAPI.Application.Implementation.Services;
 using ContactAppAPI.Domain.DTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactAppAPI.Controllers

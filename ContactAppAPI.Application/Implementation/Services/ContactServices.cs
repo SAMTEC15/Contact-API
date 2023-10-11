@@ -16,11 +16,12 @@ namespace ContactAppAPI.Application.Implementation.Services
         private readonly ContactUserDbContext _contactUserDbContext;
         private readonly ICloudRep _cloudRep;
 
-        public ContactServices(IContactRepository contactRepository, ContactUserDbContext contactUserDbContext)
+        public ContactServices(IContactRepository contactRepository, ContactUserDbContext contactUserDbContext, ICloudRep cloudRep, UserManager<ContactUser> userManager)
         {
             _contactRepository = contactRepository;
-            //_userManager = userManager;
+            _userManager = userManager;
             _contactUserDbContext = contactUserDbContext;
+            _cloudRep = cloudRep;
         }
 
         public async Task<string> AddNewUserAsync(ContactUserDto contactUserDto)

@@ -141,25 +141,7 @@ namespace ContactAppAPI.Persistence.Repository.Services
         }
         public async Task<IEnumerable<ContactUser>> GetAllContactsAsync(int page, int pageSize)
         {
-            /* var totalUsers = await _userManager.Users.CountAsync();
-             var totalPages = (int)Math.Ceiling(totalUsers / (double)pageSize);
-             page = Math.Max(1, Math.Min(totalPages, page));
-
-             var users = await _userManager.ContactUser
-                 .OrderBy(i => i.Id)
-                 .Skip(page - 1) * pageSize)
-                 .Take(pageSize)
-                 .ToListAsync();
-
-             var paginatedResult = new PaginatedUser
-             {
-                 totalUsers = totalUsers,
-                 CurrentPage = page,
-                 pageSize = pageSize,
-                 users = users
-
-             };
-             return paginatedResult;*/
+           
             return await _contactUserDbContext.ContactUsers.ToListAsync();
 
         }
